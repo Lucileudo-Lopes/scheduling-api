@@ -1,0 +1,12 @@
+services:
+    db: # serviço do banco de dados
+        image: postgres:16 # imagem oficial do PostgreSQL 16
+        environment:
+            POSTGRES_DB: scheduling # nome do banco criado na primeira subida
+            POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD} # lido do arquivo .env
+        ports:
+            - "5432:5432" # expõe o banco na sua máquina (útil no Eclipse/DBeaver)
+        volumes:
+            - pgdata:/var/lib/postgresql/data # os dados sobrevivem a reinícios do contêiner
+volumes:
+    pgdata:
